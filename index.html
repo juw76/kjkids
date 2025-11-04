@@ -1,0 +1,177 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>KJ Kids — بوابة الفيديو التعليمية</title>
+    <meta name="description" content="KJ Kids — شاهد جميع الفيديوهات والـShorts والقوائم. واجهة صديقة للأطفال، عربي أولاً، إنجليزي قابل للتبديل." />
+    <!-- AdSense placeholder: replace ca-pub-xxxxxxxxxxxxxxxx with your publisher ID -->
+   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4745925598643944"
+     crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css" />
+   
+</head>
+<body>
+    <header class="site-header">
+        <div class="brand">
+            <a href="index.html" class="logo-link">
+                <img id="channelLogo" class="logo-img" src="https://yt3.ggpht.com/RpFg_2K1vghzqkXT5MKC2l6H9-5Fhett6jOrizxDtWsUO00TwMK-vLb_UEsYECwdLRVSSFwyn0M=s800-c-k-c0x00ffffff-no-rj" alt="KJ Kids">
+            </a>
+            <div class="brand-text">
+                <h1 id="siteTitle">🎈 KJ Kids</h1>
+                <div id="siteSub" class="subtitle">تعلم وامرح — الحروف، الأرقام والألعاب</div>
+                <div id="channelStats" class="channel-stats" aria-hidden="true"></div>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="langToggle" class="btn btn-alt" aria-label="Toggle language">English</button>
+            <a id="subscribeBtn" class="btn" href="https://www.youtube.com/@KJKids?sub_confirmation=1" target="_blank" rel="noopener">اشترك</a>
+            <button id="burgerBtn" class="burger" aria-label="Open menu">☰</button>
+        </div>
+    </header>
+
+    <nav id="navBar" class="nav-bar">
+        <!--<a class="nav-link" href="index.html">الرئيسية</a>-->
+        <!--<a class="nav-link"  id="navVideos">الفيديوهات</a>
+        <a class="nav-link" href="#shorts" id="navShorts">الشورتات</a>
+        <a class="nav-link" href="#playlists" id="navPlaylists">القوائم</a>-->
+        <a class="nav-link" href="about.html">من نحن</a>
+        <a class="nav-link" href="contact.html">اتصل بنا</a>
+    </nav>
+
+    <main class="container">
+        <section class="toolbar">
+            <div class="search">
+                <input id="q" placeholder="ابحث عن حرف، عنوان أو وصف (مثال: الألف)" aria-label="Search videos" />
+                <button id="doSearch" class="btn btn-alt">🔍</button>
+            </div>
+            <div class="tabs" role="tablist" aria-label="Tabs">
+                <button id="tabVideos" class="tab active" data-tab="videos" role="tab">🎬 الفيديوهات</button>
+                <button id="tabShorts" class="tab inactive" data-tab="shorts" role="tab">📱 الشورتات</button>
+                <button id="tabPlaylists" class="tab inactive" data-tab="playlists" role="tab">🎵 القوائم</button>
+            </div>
+        </section>
+
+        <section id="content" class="content-area">
+            <div id="grid" class="grid" aria-live="polite">
+                <div id="loading" class="loading">⏳ جارٍ تحميل المحتوى…</div>
+            </div>
+
+            <!-- Ad block (example) -->
+            <div class="ad-block" style="grid-column:1/-1;text-align:center;margin-top:18px">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+                     data-ad-slot="1234567890"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+            </div>
+
+            <div class="actions" style="grid-column:1/-1;text-align:center;margin-top:12px">
+                <button id="loadMore" class="load-more" style="display:none">تحميل المزيد</button>
+                <button id="exportJson" class="btn btn-alt" style="display:none">تنزيل JSON (debug)</button>
+                <button id="exportSitemap" class="btn btn-alt" style="display:none">تنزيل sitemap.xml (debug)</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>© KJ Kids</div>
+            <div>📧 <a href="mailto:a.juwailes@gmail.com">a.juwailes@gmail.com</a></div>
+        </div>
+    </footer>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="scripts/app_online.js"></script>
+
+    <script>window.addEventListener('load', () => {
+            const langToggle = document.getElementById('langToggle');
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const loadMoreBtn = document.getElementById('loadMore');
+            const nav = document.getElementById('navBar');
+            const burgerBtn = document.getElementById('burgerBtn');
+
+            const navLinks = {
+                //home: document.querySelector('a[href="index.html"]'),
+                //videos: document.getElementById('navVideos'),
+                //shorts: document.getElementById('navShorts'),
+                //playlists: document.getElementById('navPlaylists'),
+                about: document.querySelector('a[href="about.html"]'),
+                contact: document.querySelector('a[href="contact.html"]')
+            };
+
+            const tabBtns = {
+                videos: document.getElementById('tabVideos'),
+                shorts: document.getElementById('tabShorts'),
+                playlists: document.getElementById('tabPlaylists')
+            };
+
+            let currentLang = document.documentElement.lang || 'ar';
+
+            // --- Language toggle ---
+            langToggle.addEventListener('click', () => {
+                currentLang = currentLang === 'ar' ? 'en' : 'ar';
+                document.documentElement.lang = currentLang;
+                document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+                updateLanguage();
+            });
+
+            function updateLanguage() {
+                if (currentLang === 'ar') {
+                    langToggle.textContent = 'English';
+                    subscribeBtn.textContent = 'اشترك';
+                    loadMoreBtn.textContent = 'تحميل المزيد';
+                    //navLinks.home.textContent = 'الرئيسية';
+                    //navLinks.videos.textContent = 'الفيديوهات';
+                    //navLinks.shorts.textContent = 'الشورتات';
+                    //navLinks.playlists.textContent = 'القوائم';
+                    navLinks.about.textContent = 'من نحن';
+                    navLinks.contact.textContent = 'اتصل بنا';
+                    tabBtns.videos.textContent = '🎬 الفيديوهات';
+                    tabBtns.shorts.textContent = '📱 الشورتات';
+                    tabBtns.playlists.textContent = '🎵 القوائم';
+                } else {
+                    langToggle.textContent = 'العربية';
+                    subscribeBtn.textContent = 'Subscribe';
+                    loadMoreBtn.textContent = 'Load More';
+                    //navLinks.home.textContent = 'Home';
+                    //navLinks.videos.textContent = 'Videos';
+                    //navLinks.shorts.textContent = 'Shorts';
+                    //navLinks.playlists.textContent = 'Playlists';
+                    navLinks.about.textContent = 'About';
+                    navLinks.contact.textContent = 'Contact';
+                    tabBtns.videos.textContent = '🎬 Videos';
+                    tabBtns.shorts.textContent = '📱 Shorts';
+                    tabBtns.playlists.textContent = '🎵 Playlists';
+                }
+            }
+
+            updateLanguage();
+
+            // --- Navbar tab behavior ---
+            Object.keys(tabBtns).forEach(type => {
+                const tab = tabBtns[type];
+                const navItem = navLinks[type];
+                [tab, navItem].forEach(btn => {
+                    btn.addEventListener('click', e => {
+                        e.preventDefault();
+                        document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+                        tab.classList.add('active');
+                        currentTab = type;
+                        renderItems(true);
+                        nav.classList.remove('open');
+                    });
+                });
+            });
+
+            // --- Burger menu toggle ---
+//            burgerBtn.addEventListener('click', () => nav.classList.toggle('open'));
+//            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
+});
+    </script>
+
+</body>
+</html>

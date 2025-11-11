@@ -267,10 +267,20 @@
         });
     }
 
+    //function detectLetterPage() {
+    //    const p = (location.pathname || '').split('/').pop() || '';
+    //    const m = p.match(/^([a-z0-9_+-]+)\.html$/i);
+    //    return m ? m[1].toLowerCase() : null;
+    //}
+
     function detectLetterPage() {
         const p = (location.pathname || '').split('/').pop() || '';
-        const m = p.match(/^([a-z0-9_+-]+)\.html$/i);
-        return m ? m[1].toLowerCase() : null;
+
+        // Remove .html extension and any trailing slashes
+        const pageName = p.replace(/\.html$/i, '').replace(/\/$/, '');
+
+        // Return the page name if it's not empty and not the index page
+        return pageName && pageName !== 'index' ? pageName.toLowerCase() : null;
     }
 
     // letter header management

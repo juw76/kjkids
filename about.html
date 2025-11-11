@@ -4,15 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>عن KJ Kids</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4745925598643944"
-     crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles/style.css" />
 </head>
 <body>
     <header class="site-header">
         <div class="brand">
             <a href="index.html" class="logo-link">
-                <img id="channelLogo" class="logo-img" src="https://yt3.ggpht.com/RpFg_2K1vghzqkXT5MKC2l6H9-5Fhett6jOrizxDtWsUO00TwMK-vLb_UEsYECwdLRVSSFwyn0M=s800-c-k-c0x00ffffff-no-rj" alt="KJ Kids">
+                <!--<img id="channelLogo" class="logo-img" src="https://yt3.ggpht.com/RpFg_2K1vghzqkXT5MKC2l6H9-5Fhett6jOrizxDtWsUO00TwMK-vLb_UEsYECwdLRVSSFwyn0M=s800-c-k-c0x00ffffff-no-rj" alt="KJ Kids">-->
+                <img class="logo-img" src="images/kjkids_logo.jpg" alt="KJ Kids">
             </a>
             <div class="brand-text">
                 <h1 id="siteTitle">🎈 KJ Kids</h1>
@@ -28,12 +27,14 @@
     </header>
 
     <nav id="navBar" class="nav-bar">
-        <!--<a class="nav-link" href="index.html">الرئيسية</a>-->
-        <!--<a class="nav-link"  id="navVideos">الفيديوهات</a>
-        <a class="nav-link" href="#shorts" id="navShorts">الشورتات</a>
-        <a class="nav-link" href="#playlists" id="navPlaylists">القوائم</a>-->
-        <a class="nav-link" href="about.html">من نحن</a>
-        <a class="nav-link" href="contact.html">اتصل بنا</a>
+        <div class="nav-inner">
+            <div class="nav-dropdown">
+                <button class="dropdown-btn">الدروس ▼</button>
+                <div class="dropdown-content"></div>
+            </div>
+            <a class="nav-link" id="about" style="font-family:initial;" href="about.html">من نحن</a>
+            <a class="nav-link" id="contact" style="font-family:initial;" href="contact.html">اتصل بنا</a>
+        </div>
     </nav>
     <main class="container">
         <article class="card article">
@@ -43,10 +44,15 @@
             <p>KJ Kids is an educational YouTube channel for children offering fun Arabic alphabet, numbers and learning games.</p>
         </article>
     </main>
-    <footer class="site-footer"><div class="footer-inner">© KJ Kids — <a href="mailto:a.juwailes@gmail.com">a.juwailes@gmail.com</a></div></footer>
-
-    <script src="scripts/app_online_light.js"></script>
-    <script>window.addEventListener('load', () => {
+    <!--<footer class="site-footer"><div class="footer-inner">© KJ Kids — <a href="mailto:a.juwailes@gmail.com">a.juwailes@gmail.com</a></div></footer>-->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div>© KJ Kids <a href="privacy.html">Privacy</a></div>
+            <div>📧 <a href="mailto:a.juwailes@gmail.com">a.juwailes@gmail.com</a></div>
+        </div>
+    </footer>
+    <script src="scripts/app_online.js"></script>
+    <!--<script>window.addEventListener('load', () => {
             const langToggle = document.getElementById('langToggle');
             const subscribeBtn = document.getElementById('subscribeBtn');
             const loadMoreBtn = document.getElementById('loadMore');
@@ -129,7 +135,7 @@
             // --- Burger menu toggle ---
             //            burgerBtn.addEventListener('click', () => nav.classList.toggle('open'));
             //            nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
-        });</script>
+        });</script>-->
 
 </body>
 </html>
